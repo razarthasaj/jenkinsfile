@@ -1,21 +1,33 @@
 pipeline {
-    agent any
-
-    stages {
+  agent any
+  stages {
+    stage('Get Code') {
+      parallel {
         stage('Get Code') {
-            steps {
-                echo 'Get code first'
-            }
+          steps {
+            echo 'Get code first'
+            sh 'echo hellow'
+          }
         }
-        stage('Test code') {
-            steps {
-                echo 'Testing..'
-            }
+        stage('') {
+          steps {
+            sleep(unit: 'MINUTES', time: 2)
+          }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+      }
     }
+    stage('Test code') {
+      steps {
+        echo 'Testing..'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploying....'
+      }
+    }
+  }
+  environment {
+    a1 = '12'
+  }
 }
